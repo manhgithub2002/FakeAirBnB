@@ -184,7 +184,7 @@ const HotelDetails = ({navigation}) => {
           </View>
         </View>
 
-        <View style={[styles.container, {paddingTop: 90}]}>
+        <View style={[styles.container, {paddingTop: 40}]}>
           {/* Description */}
           <ReusableText
             text={'Description'}
@@ -304,7 +304,7 @@ const HotelDetails = ({navigation}) => {
                 });
               }}
               btnText={'Contact Host'}
-              width={SIZES.width - 30}
+              width={SIZES.width - 40}
               backgroundColor={COLORS.background}
               boderColor={COLORS.green}
               borderWidth={2}

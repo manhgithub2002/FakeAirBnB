@@ -4,13 +4,17 @@ import {SIZES} from '../../constants/theme';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 const HotelMap = ({coordinates}) => {
+  let markerCoodinates = {
+    latitude: coordinates.latitude,
+    longitude: coordinates.longitude,
+  };
   return (
     <MapView
       style={styles.maps}
       provider={PROVIDER_GOOGLE}
       region={coordinates}>
       <Marker
-        coordinates={coordinates}
+        coordinate={markerCoodinates}
         title={coordinates.title}
         pinColor="red"
       />
