@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "267686480465",
+    "project_id": "travelapp-f5bbc",
+    "storage_bucket": "travelapp-f5bbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267686480465:android:ca961f0704f88b75a1c670",
+        "android_client_info": {
+          "package_name": "com.airbnb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267686480465-d1jgnnt8h69kf0s3gh95vk4vv1qo78t7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.airbnb",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "267686480465-c4bk4e3dfo751k142172he82h2l7ev9i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgj94dA-5huVZRJLJh1prDPre2UEO2afE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267686480465-c4bk4e3dfo751k142172he82h2l7ev9i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
