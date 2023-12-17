@@ -30,6 +30,7 @@ import HostProfile from './host/hostProflie/hostProfile';
 import ListProperties from './host/ListProperties';
 import CalenderDetails from './host/hostCalender/CalenderDetails';
 import ChatDetails from './chat/ChatDetails';
+import UserTripDetails from './trips/UserTrip';
 
 export {
   Onboarding,
@@ -54,6 +55,7 @@ export {
   Failed,
   Trip,
   ChatDetails,
+  UserTripDetails,
   //Host
   HostHome,
   Test,

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import reusable from '../Reusable/reuasble.style';
 import {COLORS, TEXT} from '../../constants/theme';

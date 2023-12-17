@@ -6,7 +6,6 @@ dotenv.config();
 const port = process.env.PORT;
 
 const notificationRouter = require("./routes/notifications");
-// const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 
 const countryRouter = require("./routes/countries");
@@ -15,13 +14,11 @@ const propertyRouter = require("./routes/properties");
 const facilityRouter = require("./routes/facilities");
 const orderRouter = require("./routes/orders");
 const conversationRouter = require("./routes/conversations");
-// const countriesRouter = require("./routes/countries");
 
 app.use(cors());
 app.use(express.json());
 app.use("/notifications", notificationRouter);
 
-// app.use("/api", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/countries", countryRouter);
 app.use("/api/places", placeRouter);

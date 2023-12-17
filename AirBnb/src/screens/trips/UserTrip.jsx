@@ -4,6 +4,7 @@ import {
   View,
   ActivityIndicator,
   SafeAreaView,
+  StyleSheet,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useRoute} from '@react-navigation/native';
@@ -19,9 +20,9 @@ import {
   WidthSpacer,
   // ReviewsList,
 } from '../../components/index';
+import {convertStringToFormattedDate} from '../../utils/getDate';
 import {Rating} from 'react-native-stock-star-rating';
 import {COLORS, SIZES, TEXT} from '../../constants/theme';
-import styles from './hotelDetails.style';
 import reusable from '../../components/Reusable/reuasble.style';
 import {ListBulletIcon} from 'react-native-heroicons/outline';
 import {StarIcon, CheckCircleIcon} from 'react-native-heroicons/solid';
@@ -29,10 +30,9 @@ import axios from 'axios';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-const HotelDetails = ({navigation}) => {
+const UserTripDetails = ({navigation}) => {
   const route = useRoute();
-  const {id} = route.params;
-  console.log(id);
+  const {item} = route.params;
 
   const [loading, setLoading] = useState(true);
   const [property, setProperty] = useState({});
@@ -86,7 +86,7 @@ const HotelDetails = ({navigation}) => {
     setLoading(true);
     const unsub = auth().onAuthStateChanged(async user => {
       if (user) {
-        await getPropertyById(id);
+        await getPropertyById(item.propertyId);
 
         setUserInfo(user.uid);
 
@@ -105,7 +105,7 @@ const HotelDetails = ({navigation}) => {
         <ActivityIndicator size={'large'} />
       </View>
     );
-  console.log(property);
+
   const hotel = {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris sit amet massa vitae tortor condimentum lacinia quis. Elit ut aliquam purus sit amet luctus. Nunc mi ipsum faucibus vitae aliquet. Et magnis dis parturient montes nascetur ridiculus mus mauris. Vel fringilla est ullamcorper eget nulla facilisi.',
@@ -189,6 +189,74 @@ const HotelDetails = ({navigation}) => {
         </View>
 
         <View style={[styles.container, {paddingTop: 40}]}>
+          {/* Your Plan */}
+          <ReusableText
+            text={'Your Plan'}
+            family={'medium'}
+            size={TEXT.large}
+            color={COLORS.black}
+          />
+          <HeightSpacer height={10} />
+
+          <View style={reusable.rowWithSpace('flex-start')}>
+            <ReusableText
+              text={'Start date :'}
+              family={'bold'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+
+            <WidthSpacer width={5} />
+
+            <ReusableText
+              text={convertStringToFormattedDate(item.startDate)}
+              family={'regular'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+          </View>
+
+          <HeightSpacer height={10} />
+
+          <View style={reusable.rowWithSpace('flex-start')}>
+            <ReusableText
+              text={'End date :'}
+              family={'bold'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+
+            <WidthSpacer width={5} />
+
+            <ReusableText
+              text={convertStringToFormattedDate(item.endDate)}
+              family={'regular'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+          </View>
+
+          <HeightSpacer height={10} />
+
+          <View style={reusable.rowWithSpace('flex-start')}>
+            <ReusableText
+              text={'People :'}
+              family={'bold'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+
+            <WidthSpacer width={5} />
+
+            <ReusableText
+              text={`${item.guestNumber}`}
+              family={'regular'}
+              size={TEXT.medium}
+              color={COLORS.black}
+            />
+          </View>
+          <HeightSpacer height={10} />
+
           {/* Description */}
           <ReusableText
             text={'Description'}
@@ -332,8 +400,8 @@ const HotelDetails = ({navigation}) => {
               <ListBulletIcon color={COLORS.black} size={20} />
             </TouchableOpacity>
           </View>
-          <HeightSpacer height={40} />
           {/* <ReviewsList reviews={hotel.reviews} /> */}
+          <HeightSpacer height={40} />
         </View>
       </ScrollView>
       <View style={[reusable.rowWithSpace('space-between'), styles.bottom]}>
@@ -347,7 +415,11 @@ const HotelDetails = ({navigation}) => {
           <HeightSpacer height={5} />
 
           <ReusableText
-            text={'Jan 01 - Dec 25'}
+            text={
+              convertStringToFormattedDate(item.startDate) +
+              ' ' +
+              convertStringToFormattedDate(item.endDate)
+            }
             family={'medium'}
             size={SIZES.medium}
             color={COLORS.gray}
@@ -355,16 +427,11 @@ const HotelDetails = ({navigation}) => {
         </View>
 
         <ReusableBtn
-          onPress={() =>
-            navigation.navigate('SelectedRoom', {
-              property: property,
-              property_id: id,
-            })
-          }
-          btnText={'Select Room'}
+          onPress={() => {}}
+          btnText={'Cancel the Room'}
           width={(SIZES.width - 50) / 2.2}
-          backgroundColor={COLORS.green}
-          boderColor={COLORS.green}
+          backgroundColor={COLORS.red}
+          boderColor={COLORS.red}
           borderWidth={0}
           textColor={COLORS.white}
         />
@@ -373,4 +440,31 @@ const HotelDetails = ({navigation}) => {
   );
 };
 
-export default HotelDetails;
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 20,
+    marginHorizontal: 20,
+    marginTop: 50,
+  },
+  titleContainer: {
+    margin: 15,
+    backgroundColor: COLORS.lightWhite,
+    height: 120,
+    position: 'absolute',
+    top: 170,
+    left: 0,
+    right: 0,
+    borderRadius: 20,
+  },
+  titleColumn: {
+    padding: 10,
+  },
+  bottom: {
+    paddingHorizontal: 30,
+    backgroundColor: COLORS.lightWhite,
+    height: 90,
+    paddingVertical: 20,
+  },
+});
+
+export default UserTripDetails;

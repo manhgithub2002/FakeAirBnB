@@ -100,8 +100,8 @@ const ListProperties = ({navigation}) => {
           />
         ) : null}
         <View>
-          {properties.map(item => (
-            <View style={{marginBottom: 12}}>
+          {properties.map((item, index) => (
+            <View key={index} style={{marginBottom: 12}}>
               <PropertiesTiles
                 item={item}
                 onPress={() =>

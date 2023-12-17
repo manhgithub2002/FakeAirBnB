@@ -1,6 +1,5 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
-import {SIZES} from '../../constants/theme';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 const HotelMap = ({coordinates}) => {

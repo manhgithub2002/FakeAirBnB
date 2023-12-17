@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Calender, Chat, HostHome, HostProfile, Insights} from '../screens';
@@ -10,7 +9,6 @@ import {
   ChartBarIcon,
 } from 'react-native-heroicons/outline';
 import {COLORS} from '../constants/theme';
-import TopTab from './TopTab';
 
 const Tab = createBottomTabNavigator();
 

@@ -64,7 +64,7 @@ const Home = ({navigation}) => {
       <View>
         <View style={reusable.rowWithSpace('space-between')}>
           <ReusableText
-            text={'Fake AirBnB'}
+            text={'AirBnB'}
             family={'regular'}
             size={TEXT.large}
             color={COLORS.black}

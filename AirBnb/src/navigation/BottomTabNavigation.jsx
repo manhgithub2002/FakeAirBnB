@@ -1,7 +1,6 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Chat, Home, InformationDetails, TopInfo, Trip} from '../screens';
+import {Chat, Home, Trip} from '../screens';
 import {
   HomeIcon,
   HeartIcon,
@@ -10,7 +9,6 @@ import {
 } from 'react-native-heroicons/outline';
 import {COLORS} from '../constants/theme';
 import TopTab from './TopTab';
-import {DateTimePicker} from '../components';
 
 const Tab = createBottomTabNavigator();
 

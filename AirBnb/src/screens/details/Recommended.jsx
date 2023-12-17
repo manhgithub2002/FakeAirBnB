@@ -14,6 +14,7 @@ const Recommended = ({navigation}) => {
   console.log(params);
   const [recommendations, setRecommendations] = useState([]);
   const [title, setTitle] = useState();
+
   const getPlaceRecommendations = async () => {
     try {
       const response = await axios.get(

@@ -25,8 +25,8 @@ import axios from 'axios';
 const PlaceDetails = ({navigation}) => {
   const route = useRoute();
   const {id} = route.params;
-  console.log(id);
-  const [loading, setLoading] = useState(false);
+
+  const [loading, setLoading] = useState(true);
   const [place, setPlace] = useState({});
 
   const getPlaceById = async id => {

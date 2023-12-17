@@ -1,7 +1,7 @@
-import {View, ScrollView, Alert, ActivityIndicator} from 'react-native';
+import {View, ScrollView, ActivityIndicator} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import * as Icons from 'react-native-heroicons/outline';
-import {COLORS, SIZES, TEXT} from '../constants/theme';
+import {COLORS, TEXT} from '../constants/theme';
 import {
   HeightSpacer,
   HostTiles,
@@ -15,7 +15,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {PersonalTiles} from '../components/index';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import axios from 'axios';
 
 const TopTab = ({navigation}) => {
@@ -32,18 +31,6 @@ const TopTab = ({navigation}) => {
       console.log(error.message);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const removeValue = async () => {
-    try {
-      setLoading(true);
-      await AsyncStorage.removeItem('@user');
-    } catch (e) {
-      console.log(e.message);
-    } finally {
-      setLoading(false);
-      console.log('Clear Storage: Done!');
     }
   };
 
@@ -87,6 +74,18 @@ const TopTab = ({navigation}) => {
       setUserInfo(null);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const removeValue = async () => {
+    try {
+      setLoading(true);
+      await AsyncStorage.removeItem('@user');
+    } catch (e) {
+      console.log(e.message);
+    } finally {
+      setLoading(false);
+      console.log('Clear Storage: Done!');
     }
   };
 

@@ -26,7 +26,7 @@ const CountryDetails = ({navigation}) => {
   const route = useRoute();
   const {id} = route.params;
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [country, setCountry] = useState({});
 
   const getCountryById = async country_id => {
@@ -66,7 +66,7 @@ const CountryDetails = ({navigation}) => {
           source={country.imageUrl}
           width={'100%'}
           height={350}
-          radius={30}
+          radius={12}
         />
 
         <AppBar

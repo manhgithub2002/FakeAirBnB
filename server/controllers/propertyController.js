@@ -17,6 +17,7 @@ module.exports = {
     }
   },
 
+  //use to test upload data to database
   addProperty: async (req, res, next) => {
     try {
       const docRef = db.collection("properties").doc(req.body.id);
@@ -45,13 +46,9 @@ module.exports = {
       const docRef = db.collection("properties");
       const property = await docRef.add(
         {
-          // id: req.body.id,
           host_id: req.body.host_id,
           country_id: req.body.country_id,
           title: req.body.title,
-          // imageUrl: req.body.imageUrl,
-          // rating: req.body.rating,
-          // review: req.body.review,
           homeType: req.body.homeType,
           location: req.body.location,
           facility: req.body.facility,

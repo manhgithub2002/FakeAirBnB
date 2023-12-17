@@ -36,6 +36,7 @@ import {
   Successed,
   Trip,
   UserDetails,
+  UserTripDetails,
 } from './src/screens';
 import BottomTabNavigation from './src/navigation/BottomTabNavigation';
 import HostBottomTabNavigation from './src/navigation/HostBottomTabNavigation';
@@ -192,6 +193,11 @@ function App() {
           <Stack.Screen
             name="Trip"
             component={Trip}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="UserTripDetails"
+            component={UserTripDetails}
             options={{headerShown: false}}
           />
           {/* <Stack.Screen

@@ -79,8 +79,8 @@ const HotelList = ({navigation}) => {
         <FlatList
           data={hotels}
           keyExtractor={item => item._id}
-          renderItem={({item}) => (
-            <View style={{marginBottom: 10}}>
+          renderItem={({item, index}) => (
+            <View key={index} style={{marginBottom: 10}}>
               <ReusableTiles
                 item={item}
                 onPress={() => navigation.navigate('HotelDetails', item._id)}

@@ -20,15 +20,31 @@ module.exports = {
     }
   },
 
-  getOrderByUserId: async (req, res, next) => {
+  getCurrentAndComingOrderByUserId: async (req, res, next) => {
     guestId = req.params.id;
+
+    const currentDate = new Date();
     try {
-      const ordersSnapshot = await db
+      const ComingOrdersSnapshot = await db
         .collection("orders")
         .where("guestId", "==", guestId)
+        .where("startDate", ">=", currentDate.toISOString())
+        .orderBy("startDate")
         .get();
-      const orders = ordersSnapshot.docs.map((doc) => doc.data());
-      res.status(200).send(orders);
+      const ComingOrders = ComingOrdersSnapshot.docs.map((doc) => doc.data());
+
+      const CurrentOrdersSnapshot = await db
+        .collection("orders")
+        .where("guestId", "==", guestId)
+        .where("startDate", "<=", currentDate.toISOString())
+        .get();
+      const TempOrders = CurrentOrdersSnapshot.docs.map((doc) => doc.data());
+
+      const CurrentOrders = TempOrders.filter(
+        (item) => new Date(item.endDate) > currentDate
+      );
+      const data = { current: CurrentOrders, coming: ComingOrders };
+      res.status(200).send(data);
     } catch (error) {
       console.error("Error getting properties:", error);
       res.status(500).json({ message: "Internal Server Error" });

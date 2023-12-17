@@ -1,4 +1,4 @@
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ListBulletIcon} from 'react-native-heroicons/outline';
 import {COLORS, SIZES, TEXT} from '../../constants/theme';

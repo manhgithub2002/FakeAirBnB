@@ -6,6 +6,7 @@ import {
   FlatList,
   Text,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -23,7 +24,7 @@ const HotelSearch = ({navigation}) => {
   const {id, param} = route.params;
   const [searchKey, setSearchKey] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [places, setPlaces] = useState([]);
 
   const getPlaceByCountryId = async id => {
@@ -75,6 +76,7 @@ const HotelSearch = ({navigation}) => {
       getPropertiesByPlaceId(id);
     }
   }, []);
+
   if (loading)
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -82,7 +84,7 @@ const HotelSearch = ({navigation}) => {
       </View>
     );
   return (
-    <SafeAreaView>
+    <View>
       <View style={{height: 50}}>
         <AppBar
           title={'Look for hotels'}
@@ -125,6 +127,7 @@ const HotelSearch = ({navigation}) => {
             data={places}
             keyExtractor={item => item.id}
             numColumns={2}
+            nestedScrollEnabled={true}
             ItemSeparatorComponent={() => <View style={{height: 16}} />}
             renderItem={({item}) => (
               <HotelCard
@@ -136,7 +139,7 @@ const HotelSearch = ({navigation}) => {
           />
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

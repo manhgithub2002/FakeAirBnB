@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
 import {PlusCircleIcon, MinusCircleIcon} from 'react-native-heroicons/outline';
 import reusable from './reuasble.style';
-import {ReusableText, WidthSpacer} from '..';
+import {ReusableText} from '..';
 import {COLORS, SIZES} from '../../constants/theme';
 const Counter = ({initialValue, onValueChange}) => {
   const [count, setCount] = useState(initialValue || 0);

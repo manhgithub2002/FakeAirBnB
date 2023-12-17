@@ -1,29 +1,14 @@
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  ActivityIndicator,
-  FlatList,
-} from 'react-native';
+import {View, StyleSheet, ActivityIndicator, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import * as Icons from 'react-native-heroicons/outline';
 import {COLORS, SIZES, TEXT} from '../../constants/theme';
 import {
   ChatTile,
   HeightSpacer,
-  HostTiles,
-  ProfileTile,
-  ReusableBtn,
   ReusableText,
   SearchBar,
 } from '../../components';
-import {ChatBubbleBottomCenterTextIcon} from 'react-native-heroicons/outline';
-import reusable from '../../components/Reusable/reuasble.style';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import axios from 'axios';
-import {getOrtherID} from '../../utils/getOtherID';
 
 const Chat = ({navigation}) => {
   const [userInfo, setUserInfo] = useState({});
@@ -48,19 +33,26 @@ const Chat = ({navigation}) => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    const unsub = auth().onAuthStateChanged(async user => {
-      if (user) {
-        setUserInfo(user.uid);
-        getConversationsByID(user.uid);
-        setLoading(false);
-      } else {
-        console.log('Fail to get user information!');
-      }
+    const unsubscribe = navigation.addListener('focus', () => {
+      setLoading(true);
+
+      auth().onAuthStateChanged(async user => {
+        if (user) {
+          setUserInfo(user.uid);
+          getConversationsByID(user.uid);
+          setLoading(false);
+        } else {
+          console.log('Fail to get user information!');
+        }
+      });
+
+      return () => {
+        console.log('Tab unfocused');
+      };
     });
 
-    return () => unsub;
-  }, []);
+    return unsubscribe;
+  }, [navigation]);
 
   if (loading)
     return (

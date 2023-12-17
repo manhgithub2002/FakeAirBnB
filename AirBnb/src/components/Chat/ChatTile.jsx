@@ -1,10 +1,8 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {useEffect} from 'react';
+import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS, SIZES, TEXT} from '../../constants/theme';
 import ReusableText from '../Reusable/ReusableText';
-import {getOrtherID} from '../../utils/getOtherID';
-import {useOrtherUser} from '../../hooks/useOrtherUser';
 
 const ChatTile = ({item}) => {
   const navigation = useNavigation();

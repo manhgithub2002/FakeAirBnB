@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {Component, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 
 const DateTimePicker = () => {
