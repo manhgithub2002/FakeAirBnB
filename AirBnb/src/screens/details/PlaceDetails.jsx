@@ -111,7 +111,7 @@ const PlaceDetails = ({navigation}) => {
 
           <HeightSpacer height={20} />
 
-          <PopularList data={place.popular} />
+          <PopularList data={place.popular} param={'place'} />
 
           <ReusableBtn
             onPress={() =>

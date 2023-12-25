@@ -132,7 +132,9 @@ const HotelSearch = ({navigation}) => {
             renderItem={({item}) => (
               <HotelCard
                 item={item}
-                onPress={() => navigation.navigate('PlaceDetails', item.id)}
+                onPress={() =>
+                  navigation.navigate('HotelDetails', {id: item.id})
+                }
                 margin={10}
               />
             )}
